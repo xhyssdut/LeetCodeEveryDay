@@ -46,22 +46,25 @@ public class BinaryTreeInorderTraversal_94 {
         public List<Integer> inorderTraversalIterate(TreeNode root) {
             List<Integer> result = new ArrayList<>();
             LinkedList<TreeNode> queue = new LinkedList<>();
-            HashSet<TreeNode> visited = new HashSet<>();
+            TreeNode temp = root;
             queue.push(root);
+            while(temp!=null){
+                if(temp.left!=null){
+                    queue.push(temp.left);
+                }
+                temp = temp.left;
+            }
             while(!queue.isEmpty()){
                 TreeNode node = queue.pop();
-                if(visited.contains(node)){
-                    result.add(node.val);
-                }else if(node.right==null&&node.left==null){
-                    result.add(node.val);
-                }else {
-                    visited.add(node);
-                    if(node.right!=null){
-                        queue.push(node.right);
-                    }
-                    queue.push(node);
-                    if(node.left!=null){
-                        queue.push(node.left);
+                result.add(node.val);
+                if(node.right!=null){
+                    temp = node.right;
+                    queue.push( temp);
+                    while(temp!=null){
+                        if(temp.left!=null){
+                            queue.push(temp.left);
+                        }
+                        temp = temp.left;
                     }
                 }
             }
