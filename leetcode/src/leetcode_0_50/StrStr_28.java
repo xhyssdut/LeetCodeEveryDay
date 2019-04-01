@@ -29,24 +29,16 @@ public class StrStr_28 {
             }
         }
         int[] getNext(char[] needle){
-            if(needle.length<=0){
-                return new int[0];
-            }
-            int [] next = new int[needle.length];
+            int[] next = new int[needle.length];
             next[0] = -1;
-            int k =-1,j=0;
-            while(j<needle.length-1){
-                if(k==-1||needle[j] == needle[k]){
+            int i =0,j=-1;
+            while (i<needle.length){
+                if(j==-1||needle[i]==needle[j]){
+                    i++;
                     j++;
-                    k++;
-                    if(needle[j]!=needle[k]){
-                        next[j] = k;
-
-                    }else {
-                        next[j] = next[k];
-                    }
+                    next[i] = j;
                 }else {
-                    k =next[k];
+                    j = next[j];
                 }
             }
             return next;

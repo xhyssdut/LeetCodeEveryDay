@@ -26,21 +26,15 @@ public class ReverseLinkedList_206 {
 
     class Solution1 {
         public ListNode reverseList(ListNode head) {
-            ListNode current = head;
-            ListNode newHead = null;
-            ListNode prev = null;
-            while (current != null) {
-                ListNode next = current.next;
-                if (next == null) {
-                    newHead = current;
-                }
-                current.next = prev;
-                prev = current;
-                current = next;
-
-
+            ListNode next = null;
+            ListNode pre = null;
+            while(head!=null){
+                next = head.next;
+                head.next = pre;
+                pre = head;
+                head = next;
             }
-            return newHead;
+            return pre;
         }
     }
     class Solution {
